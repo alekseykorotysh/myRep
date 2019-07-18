@@ -12,17 +12,17 @@ import org.springframework.core.env.Environment;
 @Configuration
 public class BotConfig {
 
-  @Autowired
-  private Environment environment;
-
-  @Bean(name = "credentials")
-  public MicrosoftAppCredentials getCredentials() {
-    return new MicrosoftAppCredentials(environment.getProperty("bot.appId"),
-        environment.getProperty("bot.appPassword"));
-  }
-
-  @Bean
-  public List<ResourceResponse> getResponses(){
-    return new ArrayList<>();
-  }
+//  @Autowired
+//  private Environment environment;
+//
+//  @Bean(name = "credentials")
+//  public MicrosoftAppCredentials getCredentials() {
+//    return new MicrosoftAppCredentials(environment.getProperty("bot.appId"),
+//        environment.getProperty("bot.appPassword"));
+//  }
+//
+//  @Bean
+//  public List<ResourceResponse> getResponses(){
+//    return new ArrayList<>();
+//  }
 }
