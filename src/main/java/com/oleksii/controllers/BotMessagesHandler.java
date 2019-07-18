@@ -1,5 +1,7 @@
 package com.oleksii.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.joda.deser.DateTimeDeserializer;
 import com.microsoft.bot.connector.ConnectorClient;
@@ -31,11 +33,19 @@ public class BotMessagesHandler {
     public String get() {
         return "Hi";
     }
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping(path = "")
     public List<ResourceResponse> create(@RequestBody @Valid
                                          @JsonDeserialize(using = DateTimeDeserializer.class) Activity activity) {
-        System.out.println("AAAAAA" + activity);
+        try {
+            System.out.println("AAAAAA " + objectMapper.writeValueAsString(activity));
+            System.out.printf("AAAAA " + objectMapper.writeValueAsString(credentials));
+        } catch (JsonProcessingException e) {
+
+
+        }
+
         ConnectorClient connector =
                 new ConnectorClientImpl(activity.serviceUrl(), credentials);
 
