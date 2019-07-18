@@ -15,10 +15,11 @@ public class JazzySpellChecker implements SpellCheckListener {
     private static SpellDictionaryHashMap dictionaryHashMap;
 
     static {
-        ClassLoader classLoader = JazzySpellChecker.class.getClassLoader();
-        File dictionary = new File(classLoader.getResource("dictionary.txt").getFile());
+//        ClassLoader classLoader = JazzySpellChecker.class.getClassLoader();
+//        File dictionary = new File(classLoader.getResource("dictionary.txt").getFile());
         try {
-            dictionaryHashMap = new SpellDictionaryHashMap(dictionary);
+            dictionaryHashMap = new SpellDictionaryHashMap();
+            dictionaryHashMap.addWord("python");
         } catch (IOException e) {
             e.printStackTrace();
         }
