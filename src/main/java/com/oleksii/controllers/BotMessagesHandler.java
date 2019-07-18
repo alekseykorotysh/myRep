@@ -44,9 +44,8 @@ public class BotMessagesHandler {
 
 
         }
-
-        MicrosoftAppCredentials credentials1 = new MicrosoftAppCredentials("7a4b6d90-b710-41bb-a033-422cf6683e80",
-                "asfqwerty123");
+        MicrosoftAppCredentials credentials1 = new MicrosoftAppCredentials("8c786aac-5e1b-45c6-b33f-d923c503ecf0",
+                "asdfqwerty123");
         ConnectorClient connector =
                 new ConnectorClientImpl(activity.serviceUrl(), credentials1);
 
