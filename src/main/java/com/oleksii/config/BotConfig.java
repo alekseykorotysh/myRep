@@ -18,8 +18,8 @@ public class BotConfig {
 
   @Bean(name = "credentials")
   public MicrosoftAppCredentials getCredentials() {
-    return new MicrosoftAppCredentials(environment.getProperty("bot.appId"),
-        environment.getProperty("bot.appPassword"));
+    return new MicrosoftAppCredentials("7419eda9-428a-4688-b84c-f429d0447024",
+        "qwertyasdf123");
   }
 
   @Bean
