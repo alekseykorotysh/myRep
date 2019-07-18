@@ -11,7 +11,6 @@ import com.microsoft.bot.connector.implementation.ConnectorClientImpl;
 import com.microsoft.bot.schema.models.Activity;
 import com.microsoft.bot.schema.models.ResourceResponse;
 import com.oleksii.creators.ActivityCreator;
-import com.oleksii.creators.ConversationCreator;
 import com.oleksii.senders.ResourceResponseSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,19 +40,19 @@ public class BotMessagesHandler {
                                          @JsonDeserialize(using = DateTimeDeserializer.class) Activity activity) {
         try {
             System.out.println("AAAAAA " + objectMapper.writeValueAsString(activity));
-            System.out.printf("AAAAA " + objectMapper.writeValueAsString(credentials));
         } catch (JsonProcessingException e) {
 
 
         }
-        MicrosoftAppCredentials credentials1 = new MicrosoftAppCredentials("7419eda9-428a-4688-b84c-f429d0447024",
-                "qwertyasdf123");
+
+        MicrosoftAppCredentials credentials1 = new MicrosoftAppCredentials("7a4b6d90-b710-41bb-a033-422cf6683e80",
+                "asfqwerty123");
         ConnectorClient connector =
                 new ConnectorClientImpl(activity.serviceUrl(), credentials1);
 
         Activity echoActivity = ActivityCreator.createEchoActivity(activity);
         Activity checkedActivity = ActivityCreator.createSpellCheckedActivity(activity);
-        Conversations conversation = ConversationCreator.createResponseConversation(connector);
+        Conversations conversation = connector.conversations();
         System.out.println("AAAAAA" + conversation);
         ResourceResponse echoResponse =
                 ResourceResponseSender.send(conversation, activity, echoActivity);
