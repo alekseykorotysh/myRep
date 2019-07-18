@@ -56,24 +56,24 @@ public class JazzySpellChecker implements SpellCheckListener {
     }
 
     public String getCorrectedText(String line) {
-        StringBuilder builder = new StringBuilder();
-        String[] tempWords = line.split(" ");
+//        StringBuilder builder = new StringBuilder();
+//        String[] tempWords = line.split(" ");
+//
+//        for (String tempWord : tempWords) {
+//            if (!spellChecker.isCorrect(tempWord)) {
+//                List<Word> suggestions = spellChecker.getSuggestions(tempWord, 0);
+//                if (suggestions.size() > 0) {
+//                    builder.append(spellChecker.getSuggestions(tempWord, 0).get(0).toString());
+//                } else {
+//                    builder.append(tempWord);
+//                }
+//            } else {
+//                builder.append(tempWord);
+//            }
+//            builder.append(" ");
+//        }
 
-        for (String tempWord : tempWords) {
-            if (!spellChecker.isCorrect(tempWord)) {
-                List<Word> suggestions = spellChecker.getSuggestions(tempWord, 0);
-                if (suggestions.size() > 0) {
-                    builder.append(spellChecker.getSuggestions(tempWord, 0).get(0).toString());
-                } else {
-                    builder.append(tempWord);
-                }
-            } else {
-                builder.append(tempWord);
-            }
-            builder.append(" ");
-        }
-
-        return builder.toString().trim();
+        return "HELLO PUSSY";
     }
 
     public List<String> getSuggestions(String misspelledWord) {
