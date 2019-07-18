@@ -3,22 +3,22 @@ package com.oleksii.jazzyspellcheck;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.engine.Word;
 import com.swabunga.spell.event.*;
+import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JazzySpellChecker implements SpellCheckListener {
 
     private static SpellDictionaryHashMap dictionaryHashMap;
 
     static {
-//        ClassLoader classLoader = JazzySpellChecker.class.getClassLoader();
-//        File dictionary = new File(classLoader.getResource("dictionary.txt").getFile());
+        ClassLoader classLoader = JazzySpellChecker.class.getClassLoader();
+        File dictionary = new File(classLoader.getResource("dictionary.txt").getFile());
         try {
-            dictionaryHashMap = new SpellDictionaryHashMap();
-           dictionaryHashMap.addWord("asdfasdfa");
-           dictionaryHashMap.addWord("aaaaa");
+            dictionaryHashMap = new SpellDictionaryHashMap(dictionary);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,24 +56,24 @@ public class JazzySpellChecker implements SpellCheckListener {
     }
 
     public String getCorrectedText(String line) {
-//        StringBuilder builder = new StringBuilder();
-//        String[] tempWords = line.split(" ");
-//
-//        for (String tempWord : tempWords) {
-//            if (!spellChecker.isCorrect(tempWord)) {
-//                List<Word> suggestions = spellChecker.getSuggestions(tempWord, 0);
-//                if (suggestions.size() > 0) {
-//                    builder.append(spellChecker.getSuggestions(tempWord, 0).get(0).toString());
-//                } else {
-//                    builder.append(tempWord);
-//                }
-//            } else {
-//                builder.append(tempWord);
-//            }
-//            builder.append(" ");
-//        }
+        StringBuilder builder = new StringBuilder();
+        String[] tempWords = line.split(" ");
 
-        return "HELLO PUSSY";
+        for (String tempWord : tempWords) {
+            if (!spellChecker.isCorrect(tempWord)) {
+                List<Word> suggestions = spellChecker.getSuggestions(tempWord, 0);
+                if (suggestions.size() > 0) {
+                    builder.append(spellChecker.getSuggestions(tempWord, 0).get(0).toString());
+                } else {
+                    builder.append(tempWord);
+                }
+            } else {
+                builder.append(tempWord);
+            }
+            builder.append(" ");
+        }
+
+        return builder.toString().trim();
     }
 
     public List<String> getSuggestions(String misspelledWord) {
