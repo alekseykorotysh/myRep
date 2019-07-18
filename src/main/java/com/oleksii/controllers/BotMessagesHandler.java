@@ -33,6 +33,7 @@ public class BotMessagesHandler {
     public String get() {
         return "Hi";
     }
+
     ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping(path = "")
@@ -45,9 +46,10 @@ public class BotMessagesHandler {
 
 
         }
-
+        MicrosoftAppCredentials credentials1 = new MicrosoftAppCredentials("7419eda9-428a-4688-b84c-f429d0447024",
+                "qwertyasdf123");
         ConnectorClient connector =
-                new ConnectorClientImpl(activity.serviceUrl(), credentials);
+                new ConnectorClientImpl(activity.serviceUrl(), credentials1);
 
         Activity echoActivity = ActivityCreator.createEchoActivity(activity);
         Activity checkedActivity = ActivityCreator.createSpellCheckedActivity(activity);
