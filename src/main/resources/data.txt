@@ -51,7 +51,8 @@ VALUES('contract'),
 ('create service'),
 ('new service'),
 ('add new service'),
-('add service');
+('add service'),
+('python');
 
 
 DROP TABLE IF EXISTS QUERIES;
@@ -111,4 +112,5 @@ VALUES
 ('44','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),
 ('45','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),
 ('46','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),
-('47','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic');
+('47','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),
+('48', 'https://www.python.org/');

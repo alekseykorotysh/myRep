@@ -16,51 +16,52 @@ public class DbScriptUtil {
                 "INSERT INTO KEYS(Key_word)\n" +
                 "VALUES('contract'),\n" +
                 "('producer'),\n" +
-                "('consumer'), \n" +
+                "('consumer'),\n" +
                 "('big test'),\n" +
-                "('pipeline'), \n" +
-                "('pipe line'), \n" +
-                "('deployment'), \n" +
+                "('pipeline'),\n" +
+                "('pipe line'),\n" +
+                "('deployment'),\n" +
                 "('sdd'),\n" +
-                "('hld'), \n" +
-                "('automation'), \n" +
-                "('test run'), \n" +
-                "('stage'), \n" +
-                "('preprod'), \n" +
-                "('preprod enviroment'), \n" +
-                "('enviroment'), \n" +
-                "('prod'), \n" +
-                "('prod enviroment'), \n" +
-                "('gatekeeper'), \n" +
-                "('swagger'), \n" +
-                "('contract messaging'), \n" +
-                "('contract rest'), \n" +
-                "('changelog'), \n" +
-                "('health check'), \n" +
-                "('add health check'), \n" +
-                "('qa tools'), \n" +
-                "('device emulator'), \n" +
-                "('add lo4j'), \n" +
-                "('add metadata log4j'), \n" +
-                "('metadata'), \n" +
-                "('logging'), \n" +
-                "('segmentation'), \n" +
-                "('segment'), \n" +
-                "('feature'), \n" +
-                "('processes'), \n" +
-                "('service'), \n" +
-                "('kafka'), \n" +
-                "('bi'), \n" +
-                "('segments'), \n" +
-                "('bingo specific regulator'), \n" +
-                "('add kafka'), \n" +
-                "('add kafka topic'), \n" +
-                "('create kafka'), \n" +
-                "('create messaging'), \n" +
-                "('create service'), \n" +
-                "('new service'), \n" +
-                "('add new service'), \n" +
-                "('add service');\n" +
+                "('hld'),\n" +
+                "('automation'),\n" +
+                "('test run'),\n" +
+                "('stage'),\n" +
+                "('preprod'),\n" +
+                "('preprod enviroment'),\n" +
+                "('enviroment'),\n" +
+                "('prod'),\n" +
+                "('prod enviroment'),\n" +
+                "('gatekeeper'),\n" +
+                "('swagger'),\n" +
+                "('contract messaging'),\n" +
+                "('contract rest'),\n" +
+                "('changelog'),\n" +
+                "('health check'),\n" +
+                "('add health check'),\n" +
+                "('qa tools'),\n" +
+                "('device emulator'),\n" +
+                "('add lo4j'),\n" +
+                "('add metadata log4j'),\n" +
+                "('metadata'),\n" +
+                "('logging'),\n" +
+                "('segmentation'),\n" +
+                "('segment'),\n" +
+                "('feature'),\n" +
+                "('processes'),\n" +
+                "('service'),\n" +
+                "('kafka'),\n" +
+                "('bi'),\n" +
+                "('segments'),\n" +
+                "('bingo specific regulator'),\n" +
+                "('add kafka'),\n" +
+                "('add kafka topic'),\n" +
+                "('create kafka'),\n" +
+                "('create messaging'),\n" +
+                "('create service'),\n" +
+                "('new service'),\n" +
+                "('add new service'),\n" +
+                "('add service'),\n" +
+                "('python');\n" +
                 "\n" +
                 "\n" +
                 "DROP TABLE IF EXISTS QUERIES;\n" +
@@ -138,11 +139,12 @@ public class DbScriptUtil {
                 "('39','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
                 "('40','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
                 "('41','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
-                "('42','https://wiki.playtika.com/display/BBB/Regulator'), \n" +
+                "('42','https://wiki.playtika.com/display/BBB/Regulator'),\n" +
                 "('43','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
                 "('44','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
                 "('45','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
                 "('46','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
-                "('47','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic');";
+                "('47','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
+                "('48', 'https://www.python.org/');";
     }
 }

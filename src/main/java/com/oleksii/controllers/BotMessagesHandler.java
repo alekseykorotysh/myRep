@@ -54,6 +54,8 @@ public class BotMessagesHandler implements BotMessagesController {
     @Autowired
     private QueriesDAO queriesDAO;
 
+    private static final int PAIR_MIN_SIZE = 2;
+
     @GetMapping(path = "/hi")
     public String get() {
         return "Hi";
@@ -110,7 +112,6 @@ public class BotMessagesHandler implements BotMessagesController {
         return ls;
     }
 
-
     public List<String> getResult(String inputText) {
         List<Keys> allKeys = new ArrayList<>();
         List<Queries> allQueries = new ArrayList<>();
@@ -128,6 +129,7 @@ public class BotMessagesHandler implements BotMessagesController {
         Optional<Keys> optionalKey = searcherService.findResult(activityText);
         switch (command) {
             case ADD:
+                Queries queries;
                 if (optionalKey.isPresent()) {
                     Keys key = optionalKey.get();
                     activityText = StringUtils.normalizeSpace(activityText.replaceFirst(key.getKeyWord(), ""));
@@ -136,29 +138,34 @@ public class BotMessagesHandler implements BotMessagesController {
                             .filter(query -> query.getKeyId() == key.getId())
                             .findFirst();
                     if (optionalQuery.isPresent()) {
-                        Queries queries = optionalQuery.get();
+                        queries = optionalQuery.get();
                         queries.setLinkNames(queries.getLinkNames() + "," + activityText);
                         queriesDAO.save(queries);
                     } else {
-                        Queries queries = new Queries();
+                        queries = new Queries();
                         queries.setKeyId(key.getId());
                         queries.setLinkNames(activityText);
                         queriesDAO.save(queries);
                     }
                 } else {
                     List<String> keyAndLinks = Arrays.asList(activityText.split(" "));
-                    assert keyAndLinks.size() >= 2;
+                    if (keyAndLinks.size() < PAIR_MIN_SIZE) {
+                        return Collections.singletonList("Something went wrong. Please, check pair: 'Key' and 'Value'");
+                    }
                     Keys key = new Keys();
                     key.setKeyWord(keyAndLinks.get(0));
                     keysDAO.save(key);
 
                     activityText = StringUtils.normalizeSpace(activityText.replaceFirst(key.getKeyWord(), ""));
-                    Queries queries = new Queries();
+                    queries = new Queries();
                     queries.setKeyId(key.getId());
                     queries.setLinkNames(activityText);
                     queriesDAO.save(queries);
                 }
-                return null;
+                allQueries.clear();
+                queriesDAO.findAll().forEach(allQueries::add);
+                boolean isQueryAdded = allQueries.stream().anyMatch(query -> query.getLinkNames().contains(queries.getLinkNames()));
+                return isQueryAdded ? Collections.singletonList("Query added") : Collections.singletonList("Something went wrong, query was not added");
             case GET:
                 if (optionalKey.isPresent()) {
                     List<Queries> sortedQueries = allQueries.stream()
