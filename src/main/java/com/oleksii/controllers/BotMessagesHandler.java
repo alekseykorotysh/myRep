@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/api/messages")
-public class BotMessagesHandler {
+public class BotMessagesHandler implements BotMessagesController{
 
     @Autowired
     private MicrosoftAppCredentials credentials;
@@ -94,15 +94,32 @@ public class BotMessagesHandler {
     @PostMapping(path = "")
     public List<ResourceResponse> create(@RequestBody @Valid
                                          @JsonDeserialize(using = DateTimeDeserializer.class) Activity activity) {
+
+
+        ConnectorClient connector = new ConnectorClientImpl(activity.serviceUrl(), credentials);
+        Conversations conversation = ConversationCreator.createResponseConversation(connector);
+        Activity commandActivity = ActivityCreator.createCommandActivity(activity, getResult(activity.text()));
+        ResourceResponse commandResponse = ResourceResponseSender.send(conversation, activity, commandActivity);
+        responses.add(commandResponse);
+        return responses;
+    }
+
+    private <T> List<T> flattenListOfListsImperatively(
+            List<List<T>> nestedList) {
+        List<T> ls = new ArrayList<>();
+        nestedList.forEach(ls::addAll);
+        return ls;
+    }
+
+
+    public List<String> getResult(String inputText){
         List<Keys> allKeys = new ArrayList<>();
         List<Queries> allQueries = new ArrayList<>();
         List<String> outputQuery = new ArrayList<>();
         keysDAO.findAll().forEach(allKeys::add);
         queriesDAO.findAll().forEach(allQueries::add);
-        ConnectorClient connector = new ConnectorClientImpl(activity.serviceUrl(), credentials);
-        Conversations conversation = ConversationCreator.createResponseConversation(connector);
-        Command command = Command.getCommand(activity.text());
-        String activityText = StringUtils.normalizeSpace(activity.text().replace(command.getCommandName(), ""));
+        Command command = Command.getCommand(inputText);
+        String activityText = StringUtils.normalizeSpace(inputText.replace(command.getCommandName(), ""));
         Optional<Keys> optionalKey = searcherService.findResult(activityText);
         switch (command) {
             case ADD:
@@ -140,11 +157,11 @@ public class BotMessagesHandler {
             case GET:
                 if (optionalKey.isPresent()) {
                     List<Queries> sortedQueries = allQueries.stream()
-                                                            .filter(queryy -> queryy.getKeyId() == optionalKey.get().getId())
-                                                            .collect(Collectors.toList());
+                            .filter(queryy -> queryy.getKeyId() == optionalKey.get().getId())
+                            .collect(Collectors.toList());
                     outputQuery = flattenListOfListsImperatively(sortedQueries.stream()
-                                                                              .map(q -> Arrays.asList(q.getLinkNames().split(","))).
-                                                                                      collect(Collectors.toList()));
+                            .map(q -> Arrays.asList(q.getLinkNames().split(","))).
+                                    collect(Collectors.toList()));
                 }
                 break;
             case HELP:
@@ -154,16 +171,6 @@ public class BotMessagesHandler {
                 outputQuery = allKeys.stream().map(Keys::getKeyWord).collect(Collectors.toList());
                 break;
         }
-        Activity commandActivity = ActivityCreator.createCommandActivity(activity, outputQuery);
-        ResourceResponse commandResponse = ResourceResponseSender.send(conversation, activity, commandActivity);
-        responses.add(commandResponse);
-        return responses;
-    }
-
-    private <T> List<T> flattenListOfListsImperatively(
-            List<List<T>> nestedList) {
-        List<T> ls = new ArrayList<>();
-        nestedList.forEach(ls::addAll);
-        return ls;
+        return outputQuery;
     }
 }

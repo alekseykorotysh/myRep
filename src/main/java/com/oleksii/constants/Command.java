@@ -17,8 +17,8 @@ public enum Command {
 
     public static Command getCommand(String text) {
         return Stream.of(values())
-                     .filter(c -> text.contains(c.getCommandName())).findFirst()
-                     .orElseThrow(() -> new IllegalArgumentException(String.format("Command name{%s} not found", text)));
+                .filter(c -> text.contains(c.getCommandName())).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Command name{%s} not found", text)));
     }
 
     public String getCommandName() {
