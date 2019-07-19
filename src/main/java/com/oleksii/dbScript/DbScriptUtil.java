@@ -47,7 +47,7 @@ public class DbScriptUtil {
                 "('segmentation'),\n" +
                 "('segment'),\n" +
                 "('feature'),\n" +
-                "('processes'),\n" +
+                "('bingo processes'),\n" +
                 "('service'),\n" +
                 "('kafka'),\n" +
                 "('bi'),\n" +
@@ -61,7 +61,8 @@ public class DbScriptUtil {
                 "('new service'),\n" +
                 "('add new service'),\n" +
                 "('add service'),\n" +
-                "('python');\n" +
+                "('python'),\n" +
+                "('hackaton winners 2019');\n" +
                 "\n" +
                 "\n" +
                 "DROP TABLE IF EXISTS QUERIES;\n" +
@@ -113,38 +114,38 @@ public class DbScriptUtil {
                 "('17','https://wiki.playtika.com/display/IT/Casino+Prod+VA2'),\n" +
                 "('18','https://wiki.playtika.com/display/INFRA/Services+Gatekeepers+v.2,https://wiki.playtika.com/display/SLOT/SM+Services+-+Gatekeepers')," +
                 "\n" +
-                "('19','https://wiki.playtika.com/pages/viewpage.action?pageId=117968090'),\n" +
+                "('19','https://wiki.playtika.com/display/INFRA/Swagger+endpoints'),\n" +
                 "('20','https://wiki.playtika.com/pages/viewpage.action?pageId=114201756'),\n" +
-                "('21','https://wiki.playtika.com/display/INFRA/How+to+add+and+fill+changelog+for+service'),\n" +
-                "('22','https://wiki.playtika.com/display/INFRA/How+to+add+Health+Check+for+a+service'),\n" +
+                "('21','https://wiki.playtika.com/pages/viewpage.action?pageId=117968090'),\n" +
+                "('22','https://wiki.playtika.com/display/INFRA/How+to+add+and+fill+changelog+for+service'),\n" +
                 "('23','https://wiki.playtika.com/display/INFRA/How+to+add+Health+Check+for+a+service'),\n" +
                 "('24','https://wiki.playtika.com/display/INFRA/How+to+add+Health+Check+for+a+service'),\n" +
-                "('25','https://wiki.playtika.com/display/INFRA/How+to+add+Health+Check+for+a+service'),\n" +
-                "('26','https://wiki.playtika.com/display/BBB/Create+Facebook+Test+Users+via+Swagger+and+Bingo+REST+Service, https://wiki.playtika" +
+                "('25','https://wiki.playtika.com/display/BBB/Create+Facebook+Test+Users+via+Swagger+and+Bingo+REST+Service, https://wiki.playtika\n" +
                 ".com/display/QAKB/How+to+install+Device+Emulator, https://wiki.playtika.com/display/INFRA/How+to+run+device+emulator+on+Mac'),\n" +
-                "('27','https://wiki.playtika.com/display/BBB/Create+Facebook+Test+Users+via+Swagger+and+Bingo+REST+Service, https://wiki.playtika" +
+                "('26','https://wiki.playtika.com/display/BBB/Create+Facebook+Test+Users+via+Swagger+and+Bingo+REST+Service, https://wiki.playtika\n" +
                 ".com/display/QAKB/How+to+install+Device+Emulator, https://wiki.playtika.com/display/INFRA/How+to+run+device+emulator+on+Mac'),\n" +
+                "('27','https://wiki.playtika.com/display/INFRA/How+to+add+log4j+metadata+logging+to+your+service'),\n" +
                 "('28','https://wiki.playtika.com/display/INFRA/How+to+add+log4j+metadata+logging+to+your+service'),\n" +
                 "('29','https://wiki.playtika.com/display/INFRA/How+to+add+log4j+metadata+logging+to+your+service'),\n" +
-                "('29','https://wiki.playtika.com/display/INFRA/How+to+add+log4j+metadata+logging+to+your+service'),\n" +
                 "('30','https://wiki.playtika.com/display/INFRA/How+to+add+log4j+metadata+logging+to+your+service'),\n" +
-                "('31','https://wiki.playtika.com/display/INFRA/How+to+add+log4j+metadata+logging+to+your+service'),\n" +
+                "('31','https://wiki.playtika.com/display/INFRA/How+to+add+new+feature+segment+in+Segmentation+2.0'),\n" +
                 "('32','https://wiki.playtika.com/display/INFRA/How+to+add+new+feature+segment+in+Segmentation+2.0'),\n" +
                 "('33','https://wiki.playtika.com/display/INFRA/How+to+add+new+feature+segment+in+Segmentation+2.0'),\n" +
-                "('34','https://wiki.playtika.com/display/INFRA/How+to+add+new+feature+segment+in+Segmentation+2.0'),\n" +
-                "('35','https://wiki.playtika.com/display/BBB/BingoBlitz+Processes'),\n" +
-                "('36','https://wiki.playtika.com/display/INFRA/How+to+add+new+service+or+change+existing+in+monitoring+systems'),\n" +
-                "('37','https://wiki.playtika.com/display/INFRA/How+to+add+new+service+or+change+existing+in+monitoring+systems'),\n" +
-                "('38','https://wiki.playtika.com/display/BBB/Kafka+guidelines'),\n" +
-                "('39','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
-                "('40','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
-                "('41','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
-                "('42','https://wiki.playtika.com/display/BBB/Regulator'),\n" +
+                "('34','https://wiki.playtika.com/display/BBB/BingoBlitz+Processes'),\n" +
+                "('35','https://wiki.playtika.com/display/INFRA/How+to+add+new+service+or+change+existing+in+monitoring+systems'),\n" +
+                "('36','https://wiki.playtika.com/display/BBB/Kafka+guidelines'),\n" +
+                "('37','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
+                "('38','https://wiki.playtika.com/display/INFRA/How+to+correctly+create+bi+segments'),\n" +
+                "('39','https://wiki.playtika.com/display/BBB/Regulator'),\n" +
+                "('40','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
+                "('41','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
+                "('42','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
                 "('43','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
-                "('44','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
-                "('45','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
-                "('46','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
-                "('47','https://wiki.playtika.com/display/INFRA/How+to+create+a+New+Kafka+Topic'),\n" +
-                "('48', 'https://www.python.org/');";
+                "('44','https://wiki.playtika.com/display/INFRA/How+to+Create+a+New+Service'),\n" +
+                "('45','https://wiki.playtika.com/display/INFRA/How+to+Create+a+New+Service'),\n" +
+                "('46','https://wiki.playtika.com/display/INFRA/How+to+Create+a+New+Service'),\n" +
+                "('47','https://wiki.playtika.com/display/INFRA/How+to+Create+a+New+Service'),\n" +
+                "('48', 'https://www.python.org/'),\n" +
+                "('49', 'https://image.prntscr.com/image/KcEZJLGcQAKeLZ-juYrtmQ.png');";
     }
 }
