@@ -176,6 +176,8 @@ public class BotMessagesHandler implements BotMessagesController {
                 outputQuery = allKeys.stream().map(Keys::getKeyWord).collect(Collectors.toList());
                 break;
         }
-        return outputQuery;
+        return outputQuery.isEmpty()
+                ? Collections.singletonList("no data for request. Please add information after research thru @add")
+                : outputQuery;
     }
 }
