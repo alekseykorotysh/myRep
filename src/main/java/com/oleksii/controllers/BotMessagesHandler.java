@@ -1,9 +1,6 @@
 package com.oleksii.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,6 +25,7 @@ import com.oleksii.model.Keys;
 import com.oleksii.model.Queries;
 import com.oleksii.searcher.SearcherService;
 import com.oleksii.senders.ResourceResponseSender;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +34,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping(path = "/api/messages")
-public class BotMessagesHandler implements BotMessagesController{
+public class BotMessagesHandler implements BotMessagesController {
 
     @Autowired
     private MicrosoftAppCredentials credentials;
@@ -112,13 +111,19 @@ public class BotMessagesHandler implements BotMessagesController{
     }
 
 
-    public List<String> getResult(String inputText){
+    public List<String> getResult(String inputText) {
         List<Keys> allKeys = new ArrayList<>();
         List<Queries> allQueries = new ArrayList<>();
         List<String> outputQuery = new ArrayList<>();
         keysDAO.findAll().forEach(allKeys::add);
         queriesDAO.findAll().forEach(allQueries::add);
-        Command command = Command.getCommand(inputText);
+        Command command;
+        try {
+            command = Command.getCommand(inputText);
+        } catch (IllegalArgumentException e) {
+            log.warn("command not found", e);
+            return Collections.singletonList("please start command with:\n" + String.join("\n", Stream.of(Command.values()).map(Command::getCommandName).collect(Collectors.joining("\n"))));
+        }
         String activityText = StringUtils.normalizeSpace(inputText.replace(command.getCommandName(), ""));
         Optional<Keys> optionalKey = searcherService.findResult(activityText);
         switch (command) {
